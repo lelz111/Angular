@@ -1,0 +1,27 @@
+<div class="table-container">
+  <h3 class="table-title">Data Kreditur</h3>
+  <table class="creditur-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Pekerjaan</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of childrenData; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.job }}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteItem(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="secondary-btn" (click)="sendToParent()">Send to Parent</button>
+</div>

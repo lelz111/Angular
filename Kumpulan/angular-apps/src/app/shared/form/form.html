@@ -1,0 +1,30 @@
+<h3 class="form-title">Form Input Kreditur</h3>
+
+<form [formGroup]="userForm" (ngSubmit)="submit()" class="creditur-form">
+  <div class="form-group">
+    <label>Nama:</label>
+    <input type="text" formControlName="name" />
+    <div class="error" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+      <div *ngIf="userForm.get('name')?.errors?.['required']">Nama wajib diisi.</div>
+      <div *ngIf="userForm.get('name')?.errors?.['minlength']">Nama minimal 3 karakter.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Umur:</label>
+    <input type="number" formControlName="age" />
+    <div class="error" *ngIf="userForm.get('age')?.touched && userForm.get('age')?.invalid">
+      Umur wajib diisi.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Pekerjaan:</label>
+    <input type="text" formControlName="job" />
+    <div class="error" *ngIf="userForm.get('job')?.touched && userForm.get('job')?.invalid">
+      Pekerjaan wajib diisi.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid" class="submit-btn">Add</button>
+</form>

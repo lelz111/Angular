@@ -1,0 +1,11 @@
+<h1>Simulasi Kreditur</h1>
+
+<app-form (formSubmit)="addCreditur($event)"></app-form>
+
+<app-table
+  [childrenData]="parenData"
+  (buttonEmiter)="receivedFromChild($event)"
+  (deleteEmiter)="deleteData($event)">
+</app-table>
+
+<p>Pesan dari Table: {{ testFromChild }}</p>

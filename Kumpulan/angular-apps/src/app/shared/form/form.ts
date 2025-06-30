@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,7 +15,8 @@ export class Form {
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     age: new FormControl('', Validators.required),
-    job: new FormControl('', Validators.required)
+    job: new FormControl('', Validators.required),
+    date: new FormControl('',[Validators.required, minDateValidator])
   });
 
   submit() {
@@ -25,4 +26,11 @@ export class Form {
       this.userForm.reset();
     }
   }
+}
+function minDateValidator(control: AbstractControl) : ValidationErrors | null{
+const selectedDate = new Date(control.value);
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+return selectedDate < today ? { minDate: true } : null;
 }

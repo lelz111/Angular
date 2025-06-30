@@ -25,6 +25,21 @@
       Pekerjaan wajib diisi.
     </div>
   </div>
+  <div>
+    <label for="date">
+      Tanggal Survey: 
+      <input type="date" formControlName="date" />
+    </label>
+    <div *ngIf="userForm.get('date')?.invalid && userForm.get('date')?.touched" class="error">
+      Please fill date survey
+    </div>
+    <div *ngIf="
+    userForm.get('date')?.errors?.['minDate'] &&
+    (userForm.get('date')?.touched || userForm.get('date')?.dirty)
+    " class="error">
+    Tanggal tidak boleh sebelum hari ini.
+    </div>
+  </div><br>
 
   <button type="submit" [disabled]="userForm.invalid" class="submit-btn">Add</button>
 </form>
